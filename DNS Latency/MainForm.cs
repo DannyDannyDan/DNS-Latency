@@ -49,7 +49,6 @@ namespace DNS_Latency
                 WorkPool.RemoveAt(0);
 
                 // track thread count
-
                 Interlocked.Increment(ref threadcount);
                 long localRead() { long arglocation = threadcount; var ret = Interlocked.Read(ref arglocation); return ret; }
 
@@ -96,7 +95,8 @@ namespace DNS_Latency
             WorkPool = new ArrayList();
             foreach (ListViewItem item in ListView1.Items)
             {
-                if (item.Text.Trim(new char[]{' ','_'}) != "") {
+                if (item.Text.Trim(new char[] { ' ', '_' }) != "")
+                {
                     var WorkItem = new WorkItem();
                     WorkItem.Server = item.Text;
                     WorkItem.Host = HostTextBox.Text;
@@ -112,15 +112,46 @@ namespace DNS_Latency
         private void Form1_Load(object sender, EventArgs e)
         {
             ThreadTimer.Interval = 20;
-            var Servers = ("192.168.0.1," + "192.168.1.1," + "192.168.50.1," + "68.105.28.11," + "68.105.29.11," + "68.105.28.12," + "208.67.222.222," + "208.67.220.220," + "24.116.0.201," + "24.116.0.202," + "8.8.8.8," + "8.8.4.4," + "4.2.2.2," + "151.164.1.7," + "151.164.1.8," + "151.164.11.201," + "151.164.14.201," + "151.164.67.201," + "151.164.8.201," + "151.202.0.84," + "199.45.32.43," + "204.60.203.179," + "205.171.3.65," + "206.13.28.12," + "206.13.29.12," + "206.13.30.12," + "206.13.31.12," + "206.141.192.60," + "206.141.193.55," + "64.81.79.2," + "66.73.20.40," + "67.36.128.26," + "68.94.156.1," + "68.94.157.1," + "").Split(',');
+            var Servers = new string[]{"192.168.50.1",
+                                       //"192.168.0.1",
+                                       //"68.105.28.11",
+                                       //"68.105.29.11",
+                                       //"68.105.28.12",
+                                       "208.67.222.222",
+                                       "208.67.220.220",
+                                       //"24.116.0.201",
+                                       //"24.116.0.202",
+                                       "8.8.8.8",
+                                       "8.8.4.4",
+                                       "4.2.2.2",
+                                       "151.164.1.7",
+                                       "151.164.1.8",
+                                       "151.164.11.201",
+                                       "151.164.14.201",
+                                       //"151.164.67.201",
+                                       "151.164.8.201",
+                                       "151.202.0.84",
+                                       "199.45.32.43",
+                                       //"204.60.203.179",
+                                       "205.171.3.65",
+                                       "206.13.28.12",
+                                       "206.13.29.12",
+                                       "206.13.30.12",
+                                       "206.13.31.12",
+                                       "206.141.192.60",
+                                       "206.141.193.55",
+                                       "64.81.79.2",
+                                       "66.73.20.40",
+                                       "67.36.128.26",
+                                       "68.94.156.1",
+                                       "68.94.157.1"};
 
             // Column Names set in design time do not carry over to runtime. 
             // Set tag in design time to use as name in runtime so we can reference a column by name.
             foreach (ColumnHeader column in ListView1.Columns)
             {
                 column.Name = column.Tag.ToString();
-            }                
-                
+            }
 
             // Add DNS Servers
             foreach (string Server in Servers)
@@ -155,7 +186,7 @@ namespace DNS_Latency
             try
             {
                 if (IPs == null)
-                {                                 
+                {
                     ListView1.Items[Response.Key].SubItems[ListView1.Columns["Result"].Index].Text = "-";
                     ListView1.Items[Response.Key].SubItems[ListView1.Columns["Min"].Index].Text = "-";
                     ListView1.Items[Response.Key].SubItems[ListView1.Columns["Max"].Index].Text = "-";
@@ -170,7 +201,7 @@ namespace DNS_Latency
                 }
 
                 Interlocked.Decrement(ref threadcount);
-                // Console.WriteLine("Threads: " & threadcount)
+
                 ThreadCountLabel.Text = "Threads: " + threadcount;
                 ListView1.AutoResizeColumn(ListView1.Columns["Result"].Index, ColumnHeaderAutoResizeStyle.ColumnContent);
                 if (threadcount <= 0 & WorkPool.Count == 0)
@@ -214,9 +245,6 @@ namespace DNS_Latency
         {
             Controls_UnLock();
             GC.Collect();
-            // Dim Key As String = "151.164.1.8"
-            // Console.WriteLine("working on " & ListView1.Items(Key).Text)
-
         }
 
         private void WorkComplete()
@@ -230,7 +258,6 @@ namespace DNS_Latency
             {
                 if (Control is Button & Control.Name != "Button2")
                     Control.Enabled = false;
-                // If Control.Name.ToLower <> "listview1" And Control.Name.ToLower <> "button2" Then Control.Enabled = False
             }
 
             Refresh();

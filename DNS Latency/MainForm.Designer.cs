@@ -67,8 +67,8 @@ namespace DNS_Latency
             // _ListView1
             // 
             this._ListView1.AllowColumnReorder = true;
-            this._ListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._ListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._ListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Server,
@@ -158,7 +158,7 @@ namespace DNS_Latency
             // 
             // HostTextBox
             // 
-            this.HostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.HostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HostTextBox.Location = new System.Drawing.Point(87, 3);
             this.HostTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
